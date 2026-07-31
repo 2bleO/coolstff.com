@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+
+// TODO: replace with real Neon query once DATABASE_URL is available
+const article = null;
+
+if (!article) {
+  return Astro.redirect('/');
+}
+---
+
+<Base title="coolstff.com">
+  <main>Article coming soon.</main>
+</Base>

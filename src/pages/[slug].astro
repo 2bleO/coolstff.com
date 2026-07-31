@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { getDb } from '../lib/db';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+const sql = getDb();
+const [article] = await sql`
+  SELECT title, body_html, hero_image_url
+  FROM articles
+  WHERE slug = ${slug}
+  LIMIT 1
+`;
+
+if (!article) {
+  return Astro.redirect('/');
+}
+---
+
+<Base title={article.title}>
+  <main>
+    <h1>{article.title}</h1>
+    <Fragment set:html={article.body_html} />
+  </main>
+</Base>

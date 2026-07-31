@@ -1,12 +1,28 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getDb } from '../lib/db';
 
 export const prerender = false;
 
-// TODO: replace with real Neon query once DATABASE_URL is available
-const articles = [];
+const sql = getDb();
+const articles = await sql`
+  SELECT slug, title, teaser, hero_image_url
+  FROM articles
+  ORDER BY published_at DESC
+  LIMIT 30
+`;
 ---
 
 <Base title="coolstff.com — cool stuff worth finding">
-  <main>Feed coming soon.</main>
+  <main>
+    {articles.length === 0 ? (
+      <p>No articles yet.</p>
+    ) : (
+      <ul>
+        {articles.map((a: any) => (
+          <li><a href={`/${a.slug}`}>{a.title}</a></li>
+        ))}
+      </ul>
+    )}
+  </main>
 </Base>

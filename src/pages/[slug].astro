@@ -1,18 +1,26 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getDb } from '../lib/db';
 
 export const prerender = false;
 
 const { slug } = Astro.params;
-
-// TODO: replace with real Neon query once DATABASE_URL is available
-const article = null;
+const sql = getDb();
+const [article] = await sql`
+  SELECT title, body_html, hero_image_url
+  FROM articles
+  WHERE slug = ${slug}
+  LIMIT 1
+`;
 
 if (!article) {
   return Astro.redirect('/');
 }
 ---
 
-<Base title="coolstff.com">
-  <main>Article coming soon.</main>
+<Base title={article.title}>
+  <main>
+    <h1>{article.title}</h1>
+    <Fragment set:html={article.body_html} />
+  </main>
 </Base>

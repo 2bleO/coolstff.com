@@ -6,7 +6,6 @@
     "build": "echo \"No build step yet — see feature/project-init for Astro frontend\""
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.1.0",
-    "pg": "^8.22.0"
+    "@neondatabase/serverless": "^1.1.0"
   }
 }

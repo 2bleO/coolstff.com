@@ -1,0 +1,12 @@
+{
+  "name": "coolstff",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "echo \"No build step yet — see feature/project-init for Astro frontend\""
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "pg": "^8.22.0"
+  }
+}

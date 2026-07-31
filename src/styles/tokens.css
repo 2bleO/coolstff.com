@@ -1,0 +1,12 @@
+:root {
+  /* Colors */
+  --color-cream:      #F5F1EC;
+  --color-near-black: #1C1A17;
+  --color-terracotta: #AE5120;
+  --color-taupe-gray: #706A63;
+  --color-sage:       #6B7E67;
+
+  /* Typography */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+}
